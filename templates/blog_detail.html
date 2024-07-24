@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'highlight/styles/github-dark.min.css' %}">
+    <script src="{% static 'highlight/highlight.min.js' %}"></script>
+{% endblock %}
+
+{% block title %}Blog Detail{% endblock %}
+
+{% block main %}
+    <div>
+        <h3 style="">
+            <span style="font-weight: bold;">Title: {{ blog.title }} |</span>
+            <span style="color: gray; margin-left: 4px; font-weight: bold;">Category: {{ blog.category.name }}</span>
+        </h3>
+    </div>
+    <hr>
+
+    <div class="mt-2">
+        <span class="ms-2" style="font-weight: bold">{{ blog.author.username }}</span>
+        <span class="ms-2" style="color: grey"> posted at</span>
+        <span class="ms-2">{{ blog.post_date|date:"Y-m-d H:i" }}</span>
+    </div>
+    <hr>
+    <div class="py-2">
+        {{ blog.content|safe }}
+    </div>
+    <hr>
+    <div class="mt-2">
+        <h3>Comment ({{ blog.comments.all|length }})</h3>
+        <form action="{% url 'ygyBlog:post_comment' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="blog_id" value="{{ blog.id }}">
+            <div class="mt-2">
+                <input type="text" name="content" class="form-control" placeholder="Please enter your comment...">
+            </div>
+            <div class="text-end mt-2">
+                <button type="submit" class="btn btn-outline-dark">comment</button>
+            </div>
+        </form>
+        <div class="mt-2">
+            <ul class="list-group list-group-flush">
+                {% for comment in blog.comments.all %}
+                    <li class="list-group-item mb-3">
+                        <div class="d-flex justify-content-between text-body-secondary">
+                            <div class="user-info">
+                                <span>{{ comment.author.username }}</span>
+                            </div>
+                            <div class="create-time" style="line-height: 40px">
+                                {{ comment.post_date|date:"Y-m-d H:i" }}
+                            </div>
+                        </div>
+                        <div class="mt-2">{{ comment.content }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <script>
+        hljs.highlightAll();
+    </script>
+{% endblock %}

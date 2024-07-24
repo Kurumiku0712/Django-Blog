@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <h2 style="text-align: center">Welcome to Kurumiku Blog</h2>
+    <p style="text-align: center">Your go-to place for insights and stories about software engineering, anime, game, and
+        more!</p><br>
+    <h2>Latest Posts</h2>
+    <div class="row row-cols-2 row-gap-4">
+        {% for blog in blogs %}
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="btn btn-outline-dark" href="{% url 'ygyBlog:blog_detail' blog_id=blog.id %}">
+                            <span>{{ blog.title }} |</span>
+                            <span style="color: gray; margin-left: 2px;">{{ blog.category.name }}</span>
+                        </a>
+                    </div>
+                    <div class="card-body" style="height: 100px">
+                        <p class="card-text">{{ blog.content|striptags|truncatechars:200 }}</p>
+                    </div>
+                    <div class="card-footer text-body-secondary d-flex justify-content-between">
+                        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                            <div>
+                                {{ blog.author.username }}
+                            </div>
+                            <div>{{ blog.post_date|date:"Y-m-d" }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div style="margin-top: 40px; margin-bottom: 60px">
+        <h3>Connect Me</h3>
+        <a href="https://www.linkedin.com/in/guangyu-yang-809978303/"
+           class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            <img style="margin-right:5px" src="{% static 'image/linkedin.jpg' %}" alt="" height="18"
+                 class="rounded-circle">LinkedIn</a>
+        <a style="margin-left: 15px" href="https://github.com/Kurumiku0712"
+           class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            <img style="margin-right:5px" src="{% static 'image/github.jpg' %}" alt="" height="18"
+                 class="rounded-circle">Github</a>
+        <a style="margin-left: 15px" href="https://www.facebook.com/profile.php?id=61551402966597"
+           class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><img
+                style="margin-right:5px" src="{% static 'image/facebook.jpg' %}" alt="" height="18"
+                class="rounded-circle">Facebook</a>
+        <a style="margin-left: 15px" href="https://space.bilibili.com/16071539"
+           class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><img
+                style="margin-right:5px" src="{% static 'image/bilibili.jpg' %}" alt="" height="18"
+                class="rounded-circle">Bilibili</a>
+
+
+    </div>
+{% endblock %}

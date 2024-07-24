@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block main %}
+    <h3>About Me</h3>
+    <p>Percy Yang</p>
+    <p>Master of Software engineering student at the University of Melbourne</p>
+    <p>Frontend Skills: Bootstrap, React, Unity 3D</p>
+    <p>Backend Skills: Django, Springboot, C# </p>
+    <p>Hobbies: Animation, Game, Basketball, Video Editing </p>
+    <div style="margin-top: 40px; margin-bottom: 60px">
+        <a href="https://www.linkedin.com/in/guangyu-yang-809978303/"
+           class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            <img style="margin-right:5px" src="{% static 'image/linkedin.jpg' %}" alt="" height="18"
+                 class="rounded-circle">LinkedIn</a>
+        <a style="margin-left: 15px" href="https://github.com/Kurumiku0712"
+           class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+            <img style="margin-right:5px" src="{% static 'image/github.jpg' %}" alt="" height="18"
+                 class="rounded-circle">Github</a>
+        <a style="margin-left: 15px" href="https://www.facebook.com/profile.php?id=61551402966597"
+           class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><img
+                style="margin-right:5px" src="{% static 'image/facebook.jpg' %}" alt="" height="18"
+                class="rounded-circle">Facebook</a>
+        <a style="margin-left: 15px" href="https://space.bilibili.com/16071539"
+           class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><img
+                style="margin-right:5px" src="{% static 'image/bilibili.jpg' %}" alt="" height="18"
+                class="rounded-circle">Bilibili</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header class="p-2 text-bg-dark border-bottom mb-1">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/" class="nav-link px-4 text-light"
+                       style="font-size: 25px; margin-right: -15px;  font-family: 'Poor Richard', sans-serif;">Kurumiku</a>
+                </li>
+                <li><a href="/" class="nav-link px-0 text-light"
+                       style="font-size: 25px; font-family: 'Poor Richard', sans-serif;">Blog</a></li>
+            </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="{% url 'ygyBlog:search' %}"
+                  method="GET">
+                <input type="search" name="q" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+
+            {% if user.is_authenticated %}
+                <div class="dropdown text-end">
+                    <a href="#" class="btn btn-outline-light dropdown-toggle"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'image/icon.jpg' %}" alt="mdo" width="32" height="32"
+                             class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'ygyBlog:blog_profile' user_id=user.id %}">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'ygyAuth:logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="text-end" style="margin-left: 20px">
+                    <a href="{% url 'ygyBlog:post_blog' %}" class="btn btn-outline-light">Post a blog</a>
+                </div>
+            {% else %}
+                <div class="text-end">
+                    <a href="{% url 'ygyAuth:login' %}" class="btn btn-outline-light me-2">Login</a>
+                    <a href="{% url 'ygyAuth:register' %}" class="btn btn-outline-light me-2">Sign-up</a>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</header>
+<header>
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'ygyBlog:index' %}" class="nav-link link-info px-2 text-dark-emphasis">Home</a></li>
+                <li><p class="nav-link px-2 text-dark-emphasis">|</p></li>
+                <li><a href="{% url 'ygyBlog:blog_all' %}" class="nav-link link-info px-2 text-dark-emphasis">All
+                    posts</a></li>
+                <li><p class="nav-link px-2 text-dark-emphasis">|</p></li>
+                <li><a href="{% url 'ygyBlog:blog_tags' %}" class="nav-link link-info px-2 text-dark-emphasis">Tags</a>
+                </li>
+                <li><p class="nav-link px-2 text-dark-emphasis">|</p></li>
+                <li><a href="{% url 'ygyBlog:blog_about' %}"
+                       class="nav-link link-info px-2 text-dark-emphasis">About</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main class="container bg-white p-3 rounded">
+    {% block main %}{% endblock %}
+</main>
+</body>
+
+</html>

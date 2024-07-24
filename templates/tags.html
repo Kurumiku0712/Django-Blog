@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Tags{% endblock %}
+
+{% block main %}
+    <div>
+        <h2 style="margin-bottom: 20px">Tags</h2>
+        <ul style="font-size: 25px; padding: 0; list-style: none;">
+            {% for tag in categories %}
+                {% if forloop.counter0|divisibleby:4 %}
+                    <li style="list-style-type: disc; margin-left: 1.5em;">
+                    <ul style="display: flex; flex-wrap: wrap; padding: 0;">
+                {% endif %}
+            <li style="flex: 1 1 23%; margin-right: 1%; list-style-type: disc;">
+                <a href="{% url 'ygyBlog:blog_tag_posts' tag.id %}" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                    {{ tag.name }}
+                </a>
+            </li>
+            {% if forloop.counter|divisibleby:4 or forloop.last %}
+                </ul>
+                </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+
+{% endblock %}
