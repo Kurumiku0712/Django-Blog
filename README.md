@@ -1,7 +1,7 @@
 # Personal Blog Website
 
 This is a personal blog website built using Django 5.0.6 and Bootstrap. The website is designed to be simple yet functional, allowing users to post and view blog articles. The project uses MySQL as the database.
-Here is the website link to my personal blog: https://kurumiku.pythonanywhere.com/
+Here is the website link to my personal blog website: https://kurumiku.pythonanywhere.com/
 
 ## Installation
 
