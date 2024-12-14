@@ -3,7 +3,18 @@
 This is a personal blog website built using Django 5.0.6 and Bootstrap. The website is designed to be simple yet functional, allowing users to post and view blog articles. The project uses MySQL as the database.
 Here is the website link to my personal blog website: https://kurumiku.pythonanywhere.com/
 
-## Installation
+## Project Description
+
+Developed a blog website to facilitate note-taking and inspiration capture, featuring rich-text editing, posting, searching, and categorisation functions.
+
+- Implemented email verification during user registration to enhance account security
+
+- Enabled "Remember Me" functionality on the login page to automatically manage 14-day session persistence, reducing the need for frequent logins
+
+- Integrated the WangEditor rich-text editor to support diverse content creation, including images, tables, and links, improving content presentation and user engagement
+
+Relevant Skills: Django, Bootstrap, PythonAnywhere
+
 
 ### Prerequisites
 
